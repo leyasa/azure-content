@@ -131,12 +131,6 @@ Create the NAT rules.
 
 ### Step 2
 
-Create a load balancer rule.
-
-	$lbrule = New-AzureRmLoadBalancerRuleConfig -Name HTTP -FrontendIpConfiguration $frontendIP -BackendAddressPool  $beAddressPool -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80
-
-### Step 3
-
 Create a health probe. There are two ways to configure a probe:
  
 HTTP probe
@@ -147,6 +141,12 @@ or
 TCP probe
 	
 	$healthProbe = New-AzureRmLoadBalancerProbeConfig -Name HealthProbe -Protocol Tcp -Port 80 -IntervalInSeconds 15 -ProbeCount 2
+
+### Step 3
+
+Create a load balancer rule.
+
+	$lbrule = New-AzureRmLoadBalancerRuleConfig -Name HTTP -FrontendIpConfiguration $frontendIP -BackendAddressPool  $beAddressPool -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80
 
 ### Step 4
 
